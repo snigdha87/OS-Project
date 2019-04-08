@@ -96,3 +96,15 @@ printf("\n\n\t\t\tAfter Calculating Waiting Time and Turnaround Time:\n\n");
   {
     printf("\t\t\t|  P[%0.0lf]   |       %0.0lf      |     %0.0lf      |        %0.0lf       |         %0.0lf          |\n",process[i],arrivalTime[i],burstTime[i],waitingTime[i],turnaroundTime[i]);
   }
+completionTime[0] = burstTime[0];
+  for(i=1;i<n;i++)
+  {
+    completionTime[i] = completionTime[i-1] + burstTime[i];
+  }
+
+  for(i=0;i<n;i++)
+  {
+    priority[i] = 1+waitingTime[i]/completionTime[i];
+    printf("priority of process %d",i+1);
+    printf("\t%lf\n",priority[i]);
+  }
