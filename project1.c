@@ -47,3 +47,52 @@ int main()
     printf("\t\t\t|  P[%0.0lf]   |       %0.0lf      |     %0.0lf      |\n",process[i],arrivalTime[i],burstTime[i]);
   }
 
+	int k = 1;
+  double b_time = 0;
+  for(j=0;j<n;j++)
+  {
+    b_time = b_time + burstTime[j];
+    min = burstTime[k];
+
+    for(i=k;i<n;i++)
+    {
+      if((b_time >= arrivalTime[i])&&(burstTime[i]<min))
+      {
+        temp = burstTime[k];
+        burstTime[k] = burstTime[i];
+        burstTime[i] = temp;
+
+        temp = arrivalTime[k];
+        arrivalTime[k] = arrivalTime[i];
+        arrivalTime[i] = temp;
+
+        temp = process[k];
+        process[k] = process[i];
+        process[i] = temp;
+      }
+    }
+    k++;
+  }
+  waitingTime[0] = 0;
+  for(i=1;i<n;i++)
+  {
+    sum += burstTime[i-1];
+    waitingTime[i] = sum - arrivalTime[i];
+    wait_final += waitingTime[i]; 
+  }
+  wait_avg = wait_final/n;
+  for(i=0;i<n;i++)
+  {
+    sum2 += burstTime[i];
+    turnaroundTime[i] = sum2 - arrivalTime[i];
+    turnaround_final += turnaroundTime[i];
+  }
+  turnaround_avg=turnaround_final/n;
+printf("\n\n\t\t\tAfter Calculating Waiting Time and Turnaround Time:\n\n");
+  printf("\t\t\t| Process | Arrival Time | Burst Time |  Waiting Time  |  Turn Around Time  |\n");
+    printf("\t\t\t-----------------------------------------------------------------------------\n");
+
+  for(i=0;i<n;i++)
+  {
+    printf("\t\t\t|  P[%0.0lf]   |       %0.0lf      |     %0.0lf      |        %0.0lf       |         %0.0lf          |\n",process[i],arrivalTime[i],burstTime[i],waitingTime[i],turnaroundTime[i]);
+  }
