@@ -108,3 +108,21 @@ completionTime[0] = burstTime[0];
     printf("priority of process %d",i+1);
     printf("\t%lf\n",priority[i]);
   }
+  printf("\n\n\t\t\tFinal Values after applying priority,that is, 1+ Waiting time / Estimated run time\n\n");
+  printf("\t\t\t-----------------------------------------------------------------------------\n");
+  printf("\t\t\t| Process | Arrival Time | Burst Time |  Waiting Time  |  Turn Around Time  |\n");
+  printf("\t\t\t-----------------------------------------------------------------------------\n");
+  printf("\t\t\t|  P[%0.0lf]   |       %0.0lf      |     %0.0lf      |        %0.0lf       |         %0.0lf          |\n",process[0],arrivalTime[0],burstTime[0],waitingTime[0],turnaroundTime[0]);
+  for(i=n-1;i>0;i--)
+  {
+    printf("\t\t\t|  P[%0.0lf]   |       %0.0lf      |     %0.0lf      |        %0.0lf       |         %0.0lf          |\n",process[i],arrivalTime[i],burstTime[i],waitingTime[i],turnaroundTime[i]);
+  }
+    printf("\t\t\t-----------------------------------------------------------------------------\n");
+
+  printf("\n\n\n\t\t\tAverage Turn Around Time : %lf",turnaround_avg);
+  printf("\n\t\t\tAverage Waiting Time     : %lf\n\n",wait_avg);
+	
+  getch();
+  return 0;
+}
+
